@@ -34,6 +34,7 @@ set ofu=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
+set background=dark       " set dark colorscheme
 colorscheme solarized     " (molokai) set colorscheme
 
 " Prettify JSON files
