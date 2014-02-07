@@ -10,6 +10,12 @@ ZSH_THEME="agnoster"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+if [ -f ~/.aliases ]; then
+    source ~/.aliases
+else
+    print "Error: ~/.aliases not found."
+fi
+
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
