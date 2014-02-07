@@ -1,7 +1,7 @@
 Dotfiles
 ========
 
-README from michaeljsmalley
+Inspired by: [michaeljsmalley](https://github.com/michaeljsmalley/dotfiles), [mathiasbynens](https://github.com/mathiasbynens/dotfiles), and [skwp](https://github.com/skwp/dotfiles)
 
 This repository includes all of my custom dotfiles.  They should be cloned to
 your home directory so that the path is `~/dotfiles/`.  The included setup
