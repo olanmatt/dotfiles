@@ -505,6 +505,8 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
+	<key>NSColorPanelMode</key>
+	<string>4</string>
 	<key>NSFontPanelPreviewHeight</key>
 	<real>79</real>
 	<key>NSNavLastRootDirectory</key>
@@ -541,7 +543,7 @@
 	<key>NSWindow Frame com.apple.typography_panel_DejaVuSansMonoForPowerline</key>
 	<string>776 916 260 87 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1280 64 1277 1354 0 0 2560 1418 </string>
+	<string>0 64 1277 1354 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 502 570 426 0 0 2560 1418 </string>
 	<key>New Bookmarks</key>
@@ -1325,7 +1327,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/olanmatt/.iterm2</string>
+	<string>/Users/olanmatt/.iTerm2</string>
 	<key>PromptOnClose</key>
 	<true/>
 	<key>PromptOnQuit</key>
