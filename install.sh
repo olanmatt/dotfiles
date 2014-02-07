@@ -9,7 +9,7 @@
 dir=~/dotfiles # dotfiles directory
 olddir=~/dotfiles_old # old dotfiles backup directory
 #files="bashrc vimrc vim zshrc oh-my-zsh private scrotwm.conf Xresources"# list of files/folders to symlink in homedir
-files="aliases bash_profile bash_prompt bashrc cask curlrc exports functions gitconfig gitignore hgignore inputrc vim vimrc wgetrc zshrc"
+files="aliases bash_profile bash_prompt bashrc cask curlrc exports functions gitconfig gitignore hgignore inputrc iterm2 oh-my-zsh vim vimrc wgetrc zshrc"
 
 ##########
 
