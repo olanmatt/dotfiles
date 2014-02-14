@@ -1,6 +1,6 @@
 #!/bin/bash
 ############################
-# .make.sh
+# .install.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
 
@@ -9,6 +9,7 @@
 dir=~/dotfiles # dotfiles directory
 olddir=~/dotfiles_old # old dotfiles backup directory
 files="aliases bash_profile bash_prompt bashrc cask curlrc exports functions gitconfig gitignore hgignore inputrc iterm2 oh-my-zsh vim vimrc wgetrc zshrc"
+# ignore="LICENSE install.sh README.md fonts"
 
 ##########
 
@@ -40,7 +41,10 @@ install_zsh () {
 	if [ -f /bin/zsh -o -f /usr/bin/zsh ]; then
 		# Clone my oh-my-zsh repository from GitHub only if it isn't already present
 		if [[ ! -d $dir/oh-my-zsh/ ]]; then
-			git clone http://github.com/michaeljsmalley/oh-my-zsh.git
+			git clone https://github.com/robbyrussell/oh-my-zsh.git
+			
+			# Copy Agnoster theme to oh-my-zsh
+			cp $dir/iterm2/agnoster.zsh-theme ./oh-my-zsh/themes
 		fi
 		# Set the default shell to zsh if it isn't currently set to zsh
 		if [[ ! $(echo $SHELL) == $(which zsh) ]]; then
