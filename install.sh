@@ -20,6 +20,7 @@ files="aliases bash_profile bash_prompt bashrc cask curlrc exports functions git
 #	darwin - install homebrew, iTerm, fonts, ...
 #	linux - don't install homebrew, etc.
 
+<<<<<<< HEAD
 case $1
 	fresh) # remove old, and install
 		echo fresh
@@ -29,6 +30,8 @@ case $1
 		;;
 esac
 platform=$(uname);
+=======
+>>>>>>> 0938a55a228d2cc28c6cafa79130fa67587cf29c
 
 # create dotfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
