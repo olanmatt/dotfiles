@@ -13,6 +13,23 @@ files="aliases bash_profile bash_prompt bashrc cask curlrc exports functions git
 
 ##########
 
+# TODO allow for clean install from cmdline
+#	fresh - install wihout backup
+#	clean - remove all without install
+# TODO install based on OS
+#	darwin - install homebrew, iTerm, fonts, ...
+#	linux - don't install homebrew, etc.
+
+case $1
+	fresh) # remove old, and install
+		echo fresh
+		;;
+	clean) # remove dotfile links
+		echo clean
+		;;
+esac
+platform=$(uname);
+
 # create dotfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 mkdir -p $olddir
@@ -35,6 +52,9 @@ for file in $files; do
 		rm $dir/$file/$file
 	fi
 done
+
+# Installing iTerm2 Preferences
+cp $dir/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences
 
 install_zsh () {
 	# Test to see if zshell is installed.  If it is:
