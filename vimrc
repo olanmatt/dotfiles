@@ -40,7 +40,11 @@ autocmd Syntax json sou ~/.vim/syntax/json.vim
 autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 
 " Go syntax
+filetype off
+filetype plugin indent off
 set rtp+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
 
 " Highlight characters that go over 80 columns
 " highlight OverLength ctermbg=red ctermfg=white guibg=#592929
