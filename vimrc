@@ -39,6 +39,9 @@ autocmd Syntax json sou ~/.vim/syntax/json.vim
 " Prettify Vagrantfile
 autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 
+" Go syntax
+set rtp+=$GOROOT/misc/vim
+
 " Highlight characters that go over 80 columns
 " highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 " match OverLength /\%81v.\+/
