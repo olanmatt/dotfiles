@@ -42,7 +42,9 @@ autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 " Go syntax
 filetype off
 filetype plugin indent off
-set rtp+=$GOROOT/misc/vim
+if !isdirectory("$GOROOT/misc/vim")
+	set rtp+=$GOROOT/misc/vim
+endif
 filetype plugin indent on
 syntax on
 
