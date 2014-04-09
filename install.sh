@@ -74,15 +74,15 @@ done
 ########## Platform
 
 # get the platform of the current machine
-platform=$(uname);
+# platform=$(uname);
 
-if [[ $platform == 'Linux' ]]; then
-	echo "Linux"
-elif [[ $platform == 'Darwin' ]]; then
-	echo "Darwin"
+#if [[ $platform == 'Linux' ]]; then
+#	echo "Linux"
+#elif [[ $platform == 'Darwin' ]]; then
+#	echo "Darwin"
 	# Installing iTerm2 Preferences
 	# cp $dir/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences
-fi
+#fi
 
 
 ########## Functions
