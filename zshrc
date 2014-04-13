@@ -50,5 +50,6 @@ export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 export GOPATH=$HOME/Documents/go
 # export GOROOT=$HOME/go
 # export PATH=$PATH:$GOROOT/bin
+export GOROOT=/usr/local/Cellar/go/1.2.1/libexec
 
 DEFAULT_USER=`whoami`
