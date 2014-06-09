@@ -8,16 +8,12 @@ deb: symlinks apt-get python_env go_env godeb vundle oh_my_zsh
 	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
 
 symlinks:
-	@mkdir -p $(HOME)/.tmp
-	@mkdir -p $(DIR)/vim/vim/bundle
-	@ln -sf $(DIR)/shell/bashrc $(HOME)/.bashrc
-	@ln -sf $(DIR)/shell/zshrc $(HOME)/.zshrc
+	@ln -sf $(DIR)/bash/bashrc $(HOME)/.bashrc
+	@ln -sf $(DIR)/zsh/zshrc $(HOME)/.zshrc
 	@ln -nsf $(DIR)/vim/vim $(HOME)/.vim
 	@ln -sf $(DIR)/vim/vimrc $(HOME)/.vimrc
-	@ln -sf $(DIR)/tmux/tmux.conf $(HOME)/.tmux.conf
-	@ln -sf $(DIR)/tmux/tmux-osx.conf $(HOME)/.tmux-osx.conf
 	@ln -sf $(DIR)/git/gitconfig $(HOME)/.gitconfig
-	@ln -sf $(DIR)/git/gitignore_global $(HOME)/.gitignore_global
+	@ln -sf $(DIR)/git/gitignore $(HOME)/.gitignore
 
 ensure_brew:
 	ruby $(DIR)/scripts/ensure_homebrew.rb
