@@ -1,7 +1,7 @@
 DIR=$(HOME)/dotfiles
 DEB_GO='https://storage.googleapis.com/golang/go1.2.2.linux-amd64.tar.gz'
 
-osx: symlinks brew cask python_env go_env vundle oh_my_zsh
+osx: symlinks brew python_env go_env vundle oh_my_zsh
 
 deb: symlinks apt-get python_env go_env godeb vundle oh_my_zsh
 
@@ -23,14 +23,17 @@ brew:
 	ruby $(DIR)/osx/ensure_homebrew.rb
 	brew bundle $(DIR)/osx/Brewfile
 
-cask:
-	brew tap caskroom/cask
-	brew install brew-cask
+cask: brew
+	brew bundle $(DIR)/osx/Caskfile
 
 apt-get:
 	sudo apt-get update
-	sudo cat "$(DIR)/debian/packages.list" | sudo xargs apt-get -y install
+	sudo cat "$(DIR)/linux/packages.list" | sudo xargs apt-get -y install
 	sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
+
+pacman:
+	pacman -Syy
+	pacman -S $(< $(DIR)/linux/packages.list)
 
 python_env:
 	command -v easy_install >/dev/null 2>&1 || { curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python; }

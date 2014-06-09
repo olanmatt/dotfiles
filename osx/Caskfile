@@ -1,0 +1,21 @@
+tap caskroom/cask
+install brew-cask
+
+cask install --force google-chrome
+cask install --force google-drive
+cask install --force iterm2
+cask install --force the-unarchiver
+cask install --force torbrowser
+cask install --force virtualbox
+cask install --force xquartz
+cask install --force vagrant
+cask install --force mplayerx
+cask install --force spectacle
+cask install --force utorrent
+cask install --force atom
+cask install --force bittorrent-sync
+cask install --force limechat
+cask install --force steam
+cask install --force teamspeak-client
+cask install --force handbrake
+cask install --force appcleaner

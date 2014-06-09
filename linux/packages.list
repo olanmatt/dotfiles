@@ -6,7 +6,6 @@ mercurial
 wget
 vim
 tree
-#tmux
-#sshfs
+sshfs
 zsh
-#bzr
+bzr
