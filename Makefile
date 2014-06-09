@@ -1,25 +1,31 @@
 DIR=$(HOME)/dotfiles
 DEB_GO='https://storage.googleapis.com/golang/go1.2.2.linux-amd64.tar.gz'
 
-osx: symlinks ensure_brew brew python_env go_env vundle oh_my_zsh
-	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
+osx: symlinks brew cask python_env go_env vundle oh_my_zsh
 
 deb: symlinks apt-get python_env go_env godeb vundle oh_my_zsh
-	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
+
+arch: symlinks pacman python_env go_env godeb vundle oh_my_zsh
 
 symlinks:
+	@ln -sf $(DIR)/bash/bash_profile $(HOME)/.bash_profile
 	@ln -sf $(DIR)/bash/bashrc $(HOME)/.bashrc
+	@ln -sf $(DIR)/bash/aliases $(HOME)/.aliases
+	@ln -sf $(DIR)/bash/exports $(HOME)/.exports
+	@ln -sf $(DIR)/bash/functions $(HOME)/.functions
 	@ln -sf $(DIR)/zsh/zshrc $(HOME)/.zshrc
 	@ln -nsf $(DIR)/vim/vim $(HOME)/.vim
 	@ln -sf $(DIR)/vim/vimrc $(HOME)/.vimrc
 	@ln -sf $(DIR)/git/gitconfig $(HOME)/.gitconfig
 	@ln -sf $(DIR)/git/gitignore $(HOME)/.gitignore
 
-ensure_brew:
-	ruby $(DIR)/scripts/ensure_homebrew.rb
-
 brew:
+	ruby $(DIR)/osx/ensure_homebrew.rb
 	brew bundle $(DIR)/osx/Brewfile
+
+cask:
+	brew tap caskroom/cask
+	brew install brew-cask
 
 apt-get:
 	sudo apt-get update
@@ -33,13 +39,14 @@ python_env:
 	sudo pip install virtualenvwrapper
 
 go_env:
-	mkdir -p $(HOME)/go
+	mkdir -p $(HOME)/Documents/go
 
 godeb:
 	command -v go >/dev/null 2>&1 || { curl $(DEB_GO) -o - | sudo tar -C /usr/local -xz; }
 
 vundle: symlinks
 	git clone https://github.com/gmarik/Vundle.vim.git $(HOME)/.vim/bundle/Vundle.vim
+	@echo "Reminder: Vim plugins are managed within Vim with Vundle."
 
 oh_my_zsh:
 	git clone git://github.com/robbyrussell/oh-my-zsh.git $(HOME)/.oh-my-zsh
