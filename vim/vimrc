@@ -62,6 +62,7 @@ else
 endif
 
 set mouse=a
+set pastetoggle=<F2>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 04. Vim UI                                                                 "
@@ -88,3 +89,4 @@ set shiftround            " always indent/outdent to the nearest tabstop
 set noexpandtab             " use spaces instead of tabs
 set smarttab              " use tabs at the start of a line, spaces elsewhere
 set nowrap                " don't wrap text
+set backspace=2
