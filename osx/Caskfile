@@ -19,3 +19,4 @@ cask install steam
 cask install teamspeak-client
 cask install handbrake
 cask install appcleaner
+cask install eclipse-ide
