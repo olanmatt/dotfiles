@@ -1,4 +1,4 @@
-DIR=$(HOME)/dotfiles
+DIR=$(HOME)/.dotfiles
 DEB_GO='https://storage.googleapis.com/golang/go1.2.2.linux-amd64.tar.gz'
 
 osx: symlinks brew python_env go_env vundle oh_my_zsh
@@ -23,11 +23,16 @@ symlinks:
 brew:
 	ruby $(DIR)/osx/ensure_homebrew.rb
 	brew update
-	brew bundle $(DIR)/osx/Brewfile
+	brew upgrade
+	$(DIR)/osx/Brewfile
+	sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
+	chsh -s /usr/local/bin/zsh $(USER)
 
 cask: brew
+	brew tap caskroom/cask
+	brew install brew-cask
 	brew cask update
-	brew bundle $(DIR)/osx/Caskfile
+	$(DIR)/osx/Caskfile
 
 apt-get:
 	sudo apt-get update

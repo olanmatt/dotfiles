@@ -1,23 +1,22 @@
-tap caskroom/cask
-install brew-cask
+#!/bin/bash
 
-cask install google-chrome
-cask install google-drive
-cask install google-plus-auto-backup
-cask install iterm2
-cask install the-unarchiver
-cask install torbrowser
-cask install virtualbox
-cask install xquartz
-cask install vagrant
-cask install mplayerx
-cask install spectacle
-cask install utorrent
-cask install atom
-cask install bittorrent-sync
-cask install limechat
-cask install steam
-cask install teamspeak-client
-cask install handbrake
-cask install appcleaner
-cask install eclipse-ide
+brew cask install google-chrome
+brew cask install google-drive
+brew cask install google-plus-auto-backup
+brew cask install iterm2
+brew cask install the-unarchiver
+brew cask install torbrowser
+brew cask install virtualbox
+brew cask install xquartz
+brew cask install vagrant
+brew cask install mplayerx
+brew cask install spectacle
+brew cask install utorrent
+brew cask install atom
+brew cask install bittorrent-sync
+brew cask install limechat
+brew cask install steam
+brew cask install teamspeak-client
+brew cask install handbrake
+brew cask install appcleaner
+brew cask install eclipse-ide
