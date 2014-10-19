@@ -14,3 +14,4 @@ brew install sshfs
 brew install ntfs-3g
 brew install zsh
 brew install tmux
+brew install gpg

@@ -1,12 +1,12 @@
 DIR=$(HOME)/.dotfiles
 DEB_GO='https://storage.googleapis.com/golang/go1.2.2.linux-amd64.tar.gz'
 
-osx: symlinks brew python_env go_env vundle oh_my_zsh
+osx: symlinks brew python_env go_env vundle oh_my_zsh ruby_env
 	@echo "Run 'make cask' to install applications"
 
-deb: symlinks apt-get python_env go_env godeb vundle oh_my_zsh
+deb: symlinks apt-get python_env go_env godeb vundle oh_my_zsh ruby_env
 
-arch: symlinks pacman python_env go_env godeb vundle oh_my_zsh
+arch: symlinks pacman python_env go_env godeb vundle oh_my_zsh ruby_env
 
 symlinks:
 	@ln -sf $(DIR)/bash/bash_profile $(HOME)/.bash_profile
@@ -50,7 +50,7 @@ python_env:
 	sudo pip install virtualenvwrapper
 
 ruby_env:
-	\curl -sSL https://get.rvm.io | bash -s stable
+	\curl -sSL https://get.rvm.io | bash -s stable --auto-dotfiles
 
 go_env:
 	mkdir -p $(HOME)/Documents/go
