@@ -7,7 +7,7 @@ $ '
 
 RPROMPT='%{$(echotc UP 1)%}${_return_status}%{$(echotc DO 1)%}'
 
-local _return_status="%(?.%{$fg[white]%}[%?]%{$reset_color%}.%{$fg[red]%}[%?]%{$reset_color%} )"
+local _return_status="%(?.%{$fg[white]%}[%?]%{$reset_color%}.%{$fg[red]%}[%?]%{$reset_color%})"
 local _current_dir="%{$fg[blue]%}%3~%{$reset_color%}"
 local _hist_no="%{$fg[grey]%}%h%{$reset_color%}"
 

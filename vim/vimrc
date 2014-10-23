@@ -20,10 +20,16 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" Add your plugins here
+" add your plugins here
 Plugin 'scrooloose/syntastic'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mbbill/undotree'
+Plugin 'majutsushi/tagbar'
+Plugin 'fatih/vim-go'
+Plugin 'flazz/vim-colorschemes' " for colourchemes
 
-" All of your Plugins must be added before the following line
+" all of your Plugins must be added before the following line
 call vundle#end()               " required
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -40,15 +46,6 @@ syntax enable                   " enable syntax highlighting (previously syntax 
 set background=dark             " set dark colorscheme
 colorscheme molokai             " (molokai) set colorscheme
 
-" Go syntax
-filetype off
-filetype plugin indent off
-if !isdirectory("$GOROOT/misc/vim")
-    set rtp+=$GOROOT/misc/vim
-endif
-filetype plugin indent on
-syntax on
-
 " Columns
 " TODO(olanmatt): Update else case to match colorscheme
 if exists('+colorcolumn')
@@ -57,6 +54,19 @@ else
     highlight OverLength ctermbg=red ctermfg=white guibg=#592929
     match OverLength /\%81v.\+/
 endif
+
+" Disable Unicode characters in airline
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = ""
+let g:airline_left_alt_sep = ""
+let g:airline_right_sep = ""
+let g:airline_right_alt_sep = ""
+let g:airline_symbols.branch = ""
+let g:airline_symbols.readonly = ""
+let g:airline_symbols.linenr = ""
+let g:airline_theme = 'molokai'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim UI                                                                     "
@@ -69,7 +79,6 @@ set incsearch                   " but do highlight as you type your search.
 set ignorecase                  " make searches case-insensitive.
 set ruler                       " always show info along bottom.
 set showmatch                   " highlight matching braces
-set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
 set visualbell                  " no sounds
 set noerrorbells                " do not beep
 set mouse=a                     " enable mouse
