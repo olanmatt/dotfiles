@@ -21,12 +21,12 @@ symlinks:
 	@ln -sf $(DIR)/git/gitignore $(HOME)/.gitignore
 
 brew:
-	command -v brew >/dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	command -v brew >/dev/null 2>&1 || ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew update
 	brew upgrade
 	$(DIR)/osx/Brewfile
-	#sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
-	#chsh -s /usr/local/bin/zsh $(USER)
+	sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
+	chsh -s /usr/local/bin/zsh $(USER)
 
 cask: brew
 	brew tap caskroom/cask
