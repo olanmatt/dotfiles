@@ -1,36 +1,125 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: Matt Olan <hello@mattolan.com>                                 "
 "        URL: http://github.com/olanmatt/dotfiles                            "
-"    Creater: michaeljsmalley                                                "
-"                                                                            "
-" Sections:                                                                  "
-"   01. General ................. General Vim behavior                       "
-"   02. Events .................. General autocmd events                     "
-"   03. Theme/Colors ............ Colors, fonts, etc.                        "
-"   04. Vim UI .................. User interface behavior                    "
-"   05. Text Formatting/Layout .. Text, tab, indentation related             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 01. General                                                                "
+" General                                                                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible         " get rid of Vi compatibility mode. SET FIRST!
+set nocompatible                " be iMproved, required
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 02. Events                                                                 "
+" Vundle                                                                     "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]
+filetype off                    " required
 
-" Enable omnicompletion (to use, hold Ctrl+X then Ctrl+O while in Insert mode.
-set ofu=syntaxcomplete#Complete
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Add your plugins here
+Plugin 'scrooloose/syntastic'
+
+" All of your Plugins must be added before the following line
+call vundle#end()               " required
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 03. Theme/Colors                                                           "
+" Events                                                                     "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=256              " enable 256-color mode.
-syntax enable             " enable syntax highlighting (previously syntax on).
-set background=dark       " set dark colorscheme
-colorscheme solarized     " (molokai) set colorscheme
+filetype plugin indent on       " required
+set ofu=syntaxcomplete#Complete " enable omni completion
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Theme & Colors                                                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256                    " enable 256-color mode.
+syntax enable                   " enable syntax highlighting (previously syntax on).
+set background=dark             " set dark colorscheme
+colorscheme molokai             " (molokai) set colorscheme
+" let g:rehash256 = 1
+
+" Go syntax
+filetype off
+filetype plugin indent off
+if !isdirectory("$GOROOT/misc/vim")
+    set rtp+=$GOROOT/misc/vim
+endif
+filetype plugin indent on
+syntax on
+
+" Columns
+" TODO(olanmatt): Update else case to match colorscheme
+if exists('+colorcolumn')
+    set colorcolumn=80,100
+else
+    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+    match OverLength /\%81v.\+/
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim UI                                                                     "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set number                      " show line numbers
+set cursorline                  " highlight current line
+set laststatus=2                " last window always has a statusline
+set nohlsearch                  " bon't continue to highlight searched phrases.
+set incsearch                   " but do highlight as you type your search.
+set ignorecase                  " make searches case-insensitive.
+set ruler                       " always show info along bottom.
+set showmatch                   " highlight matching braces
+set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
+set visualbell                  " no sounds
+set noerrorbells                " do not beep
+set mouse=a                     " enable mouse
+set pastetoggle=<F2>            " toggle paste mode with <F2>
+set scrolloff=3                 " Start scroll 3 lines before vert buffer ends
+set sidescrolloff=3             " Start scroll 3 lines before horz buffer ends
+set virtualedit=onemore         " Allow for cursor beyond last character
+set backspace=indent,eol,start  " allow backspace in insert mode
+set modeline                    " Enable modelines in vim
+set showcmd                     " Show incomplete cmds down the bottom
+set cmdheight=1                 " Always show the command line
+set showtabline=1               " Show tab-bar only if there are tabs
+set autoread                    " Reload files changed outside vim
+set hidden                      " Buffers exist in the background
+set switchbuf=useopen           " reveal already open files from the quickfix
+set autochdir                   " Automatically cd into `dir %`
+set tags+=tags;                 " use tag files
+set lazyredraw                  " lazily redraw the screen
+let g:clipbrdDefaultReg = '+'   " Default Clipboard Registry = +
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Text Formatting/Layout                                                     "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set autoindent                  " auto-indent
+set tabstop=4                   " tab spacing
+set softtabstop=4               " unify
+set shiftwidth=4                " indent/outdent by 4 columns
+set shiftround                  " always indent/outdent to the nearest tabstop
+set expandtab			        " use spaces instead of tabs
+set smarttab                    " use tabs at the start of a line, spaces elsewhere
+set nowrap                      " don't wrap text
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Functions                                                                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove trailing whitespace
+function! RemoveWhiteSpace()
+	if exists('b:noStripWhitespace')
+		return
+	endif
+	call RemoveWhiteSpaceForce()
+endfunction
+
+function! RemoveWhiteSpaceForce()
+	exe "normal mz"
+	%s/\s\+$//ge
+	exe "normal 'z"
+endfunction
+autocmd BufWrite,FileWritePre * call RemoveWhiteSpace()
 
 " Prettify JSON files
 autocmd BufRead,BufNewFile *.json set filetype=json
@@ -38,55 +127,3 @@ autocmd Syntax json sou ~/.vim/syntax/json.vim
 
 " Prettify Vagrantfile
 autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
-
-" Go syntax
-filetype off
-filetype plugin indent off
-"if !isdirectory("$GOROOT/misc/vim")
-	set rtp+=$GOROOT/misc/vim
-"endif
-filetype plugin indent on
-syntax on
-
-" Highlight characters that go over 80 columns
-" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-" match OverLength /\%81v.\+/
-
-" Columns
-if exists('+colorcolumn')
-	set colorcolumn=80,100
-	highlight ColorColumn ctermbg=95
-else
-	highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-	match OverLength /\%81v.\+/
-endif
-
-set mouse=a
-set pastetoggle=<F2>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 04. Vim UI                                                                 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set number                " show line numbers
-set cul                   " highlight current line
-set laststatus=2          " last window always has a statusline
-set nohlsearch            " Don't continue to highlight searched phrases.
-set incsearch             " But do highlight as you type your search.
-set ignorecase            " Make searches case-insensitive.
-set ruler                 " Always show info along bottom.
-set showmatch
-set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
-set visualbell
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 05. Text Formatting/Layout                                                 "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set autoindent            " auto-indent
-set tabstop=4             " tab spacing
-set softtabstop=4         " unify
-set shiftwidth=4          " indent/outdent by 4 columns
-set shiftround            " always indent/outdent to the nearest tabstop
-set noexpandtab             " use spaces instead of tabs
-set smarttab              " use tabs at the start of a line, spaces elsewhere
-set nowrap                " don't wrap text
-set backspace=2

@@ -1,12 +1,12 @@
 DIR=$(HOME)/.dotfiles
 DEB_GO='https://storage.googleapis.com/golang/go1.2.2.linux-amd64.tar.gz'
 
-osx: symlinks brew python_env go_env vundle oh_my_zsh ruby_env
+osx: symlinks brew python ruby go vundle oh_my_zsh
 	@echo "Run 'make cask' to install applications"
 
-deb: symlinks apt-get python_env go_env godeb vundle oh_my_zsh ruby_env
+deb: symlinks aptitude python ruby go godeb vundle oh_my_zsh
 
-arch: symlinks pacman python_env go_env godeb vundle oh_my_zsh ruby_env
+arch: symlinks pacman python ruby go godeb vundle oh_my_zsh
 
 symlinks:
 	@ln -sf $(DIR)/bash/bash_profile $(HOME)/.bash_profile
@@ -21,12 +21,12 @@ symlinks:
 	@ln -sf $(DIR)/git/gitignore $(HOME)/.gitignore
 
 brew:
-	ruby $(DIR)/osx/ensure_homebrew.rb
+	command -v brew >/dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew update
 	brew upgrade
 	$(DIR)/osx/Brewfile
-	sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
-	chsh -s /usr/local/bin/zsh $(USER)
+	#sudo sh -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
+	#chsh -s /usr/local/bin/zsh $(USER)
 
 cask: brew
 	brew tap caskroom/cask
@@ -34,7 +34,7 @@ cask: brew
 	brew cask update
 	$(DIR)/osx/Caskfile
 
-apt-get:
+aptitude:
 	sudo apt-get update
 	sudo cat "$(DIR)/linux/packages.list" | sudo xargs apt-get -y install
 	sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
@@ -43,16 +43,15 @@ pacman:
 	pacman -Syy
 	pacman -S $(< $(DIR)/linux/packages.list)
 
-python_env:
+python:
 	command -v easy_install >/dev/null 2>&1 || { curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python; }
 	command -v pip >/dev/null 2>&1 || sudo easy_install pip
-	sudo pip install virtualenv
-	sudo pip install virtualenvwrapper
+	sudo $(DIR)/python/Pipfile
 
-ruby_env:
+ruby:
 	\curl -sSL https://get.rvm.io | bash -s stable --auto-dotfiles
 
-go_env:
+go:
 	mkdir -p $(HOME)/Documents/go
 
 godeb:
@@ -65,3 +64,5 @@ vundle: symlinks
 oh_my_zsh:
 	git clone git://github.com/robbyrussell/oh-my-zsh.git $(HOME)/.oh-my-zsh
 	cp $(DIR)/zsh/*.zsh-theme $(HOME)/.oh-my-zsh/themes
+
+.PHONY: python
