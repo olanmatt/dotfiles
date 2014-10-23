@@ -63,6 +63,6 @@ vundle: symlinks
 
 oh_my_zsh:
 	git clone git://github.com/robbyrussell/oh-my-zsh.git $(HOME)/.oh-my-zsh
-	cp $(DIR)/zsh/*.zsh-theme $(HOME)/.oh-my-zsh/themes
+	ln -sf $(DIR)/zsh/*.zsh-theme $(HOME)/.oh-my-zsh/themes
 
 .PHONY: python
