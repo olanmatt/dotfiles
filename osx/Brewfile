@@ -17,3 +17,4 @@ brew install tmux
 brew install gpg
 brew install ant
 brew install astyle
+brew install heroku

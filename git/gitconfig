@@ -91,5 +91,14 @@
     [url "git://gist.github.com/"]
     insteadOf = "gist:"
 
+[pretty]
+    sparselog        = %C(red)%h%C(reset) -%C(auto)%d %C(reset)%s %C(blue)<%an> %C(reset)%C(cyan)(%ad)%C(reset)
+    sha              = %h
+    fulllog          = format:\
+                        %nCommit: %Creset%C(auto)%d%Creset %Cred%H\
+                        %nAuthor: %aN %C(blue bold)<%ae>%Creset\
+                        %nDate  : %C(green)%ad%Creset\
+                        %n%w(0,4,4)%+s%n%n%-b%n
+
 [push]
 	default = simple

@@ -16,6 +16,8 @@ alias lS='ls -1FSsh'
 alias lart='ls -1Fcart'
 alias lrt='ls -1Fcrt'
 
+alias tmux="TERM=screen-256color-bce tmux"
+
 alias zshrc='vim ~/.zshrc' # Quick access to the ~/.zshrc file
 
 alias grep='grep --color'

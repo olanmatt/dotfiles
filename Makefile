@@ -14,6 +14,7 @@ symlinks:
 	@ln -sf $(DIR)/bash/aliases $(HOME)/.aliases
 	@ln -sf $(DIR)/bash/exports $(HOME)/.exports
 	@ln -sf $(DIR)/bash/functions $(HOME)/.functions
+	@ln -sf $(DIR)/tmux/tmux.conf $(HOME)/.tmux.conf
 	@ln -sf $(DIR)/zsh/zshrc $(HOME)/.zshrc
 	@ln -nsf $(DIR)/vim/vim $(HOME)/.vim
 	@ln -sf $(DIR)/vim/vimrc $(HOME)/.vimrc

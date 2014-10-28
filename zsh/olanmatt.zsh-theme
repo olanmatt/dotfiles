@@ -42,7 +42,7 @@ function _virtualenv_prompt_info() {
         else
             local name=$(basename $VIRTUAL_ENV)
         fi
-        echo " %{$fg[magenta]%}$name%{$reset_color%}"
+        echo " %{$fg[yellow]%}$name%{$reset_color%}"
     fi
 }
 
