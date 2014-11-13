@@ -97,7 +97,10 @@ set switchbuf=useopen           " reveal already open files from the quickfix
 set autochdir                   " Automatically cd into `dir %`
 set tags+=tags;                 " use tag files
 set lazyredraw                  " lazily redraw the screen
-let g:clipbrdDefaultReg = '+'   " Default Clipboard Registry = +
+let g:clipbrdDefaultReg = '+'   " default Clipboard Registry = +
+set directory=$HOME/.vim/backup// " where to save swap files
+set undodir=$HOME/.vim/undo     " where to save undo histories
+set undofile                    " save undo's after file closes
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text Formatting/Layout                                                     "
