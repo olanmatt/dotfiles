@@ -18,3 +18,5 @@ brew install gpg
 brew install ant
 brew install astyle
 brew install heroku
+brew install horndis
+brew install icdiff

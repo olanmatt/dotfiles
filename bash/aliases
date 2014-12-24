@@ -220,3 +220,6 @@ alias reload="exec $SHELL -l"
 
 # Start Python SimpleHTTPServer
 alias http="python -m SimpleHTTPServer"
+
+# Replace diff with icdiff
+alias diff=icdiff
