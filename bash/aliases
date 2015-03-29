@@ -1,4 +1,6 @@
-# ls, the common ones I use a lot shortened for rapid fire usage
+# File: aliases
+# Author: Matt Olan
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	alias ls='ls --color'
@@ -62,47 +64,9 @@ alias p='ps -f'
 alias sortnr='sort -n -r'
 alias unexport='unset'
 
-alias whereami=display_info
-
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-
-# zsh is able to auto-do some kungfoo
-# depends on the SUFFIX :)
-# TODO fix for Ubuntu 14.04
-#if [ ${ZSH_VERSION//\./} -ge 420 ]; then
-  # open browser on urls
-#  _browser_fts=(htm html de org net com at cx nl se dk dk php)
-#  for ft in $_browser_fts ; do alias -s $ft=$BROWSER ; done
-
-#  _editor_fts=(cpp cxx cc c hh h inl asc txt TXT tex)
-#  for ft in $_editor_fts ; do alias -s $ft=$EDITOR ; done
-
-#  _image_fts=(jpg jpeg png gif mng tiff tif xpm)
-#  for ft in $_image_fts ; do alias -s $ft=$XIVIEWER; done
-
-#  _media_fts=(ape avi flv mkv mov mp3 mpeg mpg ogg ogm rm wav webm)
-#  for ft in $_media_fts ; do alias -s $ft=mplayer ; done
-
-  #read documents
-#  alias -s pdf=acroread
-#  alias -s ps=gv
-#  alias -s dvi=xdvi
-#  alias -s chm=xchm
-#  alias -s djvu=djview
-
-  #list whats inside packed file
-#  alias -s zip="unzip -l"
-#  alias -s rar="unrar l"
-#  alias -s tar="tar tf"
-#  alias -s tar.gz="echo "
-#  alias -s ace="unace l"
-#fi
-
-# Make zsh know about hosts already accessed by SSH
-# TODO fix for Ubuntu 14.04
-# zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
@@ -123,9 +87,6 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
-
-# Enhanced WHOIS lookups
-alias whois="whois -h whois-servers.net"
 
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
@@ -207,7 +168,6 @@ command -v grunt > /dev/null && alias grunt="grunt --stack"
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
-alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
@@ -223,4 +183,4 @@ alias reload="exec $SHELL -l"
 alias http="python -m SimpleHTTPServer"
 
 # Replace diff with icdiff
-alias diff=icdiff
+alias diff="icdiff"

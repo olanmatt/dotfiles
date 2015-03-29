@@ -17,6 +17,7 @@ brew install httperf
 brew install icdiff
 brew install mercurial
 brew install namebench
+brew install ngrep
 brew install nmap
 brew install node
 brew install ntfs-3g
