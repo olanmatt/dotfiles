@@ -7,6 +7,18 @@ $ '
 
 RPROMPT='%{$(echotc UP 1)%}${_return_status}%{$(echotc DO 1)%}'
 
+function current_branch() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+  echo ${ref#refs/heads/}
+}
+
+function current_repository() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+  ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+  echo $(git remote -v | cut -d':' -f 2)
+}
+
 local _return_status="%(?.%{$fg[white]%}[%?]%{$reset_color%}.%{$fg[red]%}[%?]%{$reset_color%})"
 local _current_dir="%{$fg[blue]%}%3~%{$reset_color%}"
 local _hist_no="%{$fg[grey]%}%h%{$reset_color%}"

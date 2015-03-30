@@ -4,7 +4,6 @@ brew install ack
 brew install android-platform-tools
 brew install ant
 brew install astyle
-brew install brew-cask
 brew install cloc
 brew install ctags
 brew install git
@@ -31,4 +30,3 @@ brew install tree
 brew install vim
 brew install wget
 brew install zsh
-
