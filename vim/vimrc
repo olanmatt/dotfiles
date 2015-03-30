@@ -21,6 +21,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " add your plugins here
+Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
@@ -97,7 +98,7 @@ set switchbuf=useopen           " reveal already open files from the quickfix
 set autochdir                   " Automatically cd into `dir %`
 set tags+=tags;                 " use tag files
 set lazyredraw                  " lazily redraw the screen
-let g:clipbrdDefaultReg = '+'   " default Clipboard Registry = +
+set clipboard=unnamed           " use system clipboard when possible
 set directory=$HOME/.vim/backup// " where to save swap files
 set undodir=$HOME/.vim/undo     " where to save undo histories
 set undofile                    " save undo's after file closes
