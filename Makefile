@@ -47,9 +47,12 @@ go:
 
 tmux: symlinks
 	git clone git://github.com/tmux-plugins/tpm $(HOME)/.tmux/plugins/tpm
+	$(DIR)/tmux/tmux/plugins/tpm/scripts/install_plugins.sh >/dev/null 2>&1
 
 vim: symlinks
 	git clone https://github.com/gmarik/Vundle.vim.git $(HOME)/.vim/bundle/Vundle.vim
+	vim +PluginInstall +qall
+	ln -s $(DIR)/vim/olanmatt_airline.vim $(DIR)/vim/vim/bundle/vim-airline/autoload/airline/themes/olanmatt.vim
 
 zsh:
 	git clone git://github.com/robbyrussell/oh-my-zsh.git $(HOME)/.oh-my-zsh

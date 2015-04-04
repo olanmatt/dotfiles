@@ -17,7 +17,6 @@ brew cask install handbrake
 brew cask install inkscape
 brew cask install iterm2
 brew cask install limechat
-brew cask install mplayerx
 brew cask install no-ip-duc
 brew cask install spectacle
 brew cask install steam
@@ -27,4 +26,5 @@ brew cask install torbrowser
 brew cask install utorrent
 brew cask install vagrant
 brew cask install virtualbox
+brew cask install vlc
 brew cask install xquartz

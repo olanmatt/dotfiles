@@ -1,23 +1,46 @@
 # olanmatt ZSH Theme
 
-precmd() {
-PROMPT='$(_user_host)${_current_dir}$(git_prompt_info)$(_ruby_version)$(_virtualenv_prompt_info)
-$ '
-}
-
-RPROMPT='%{$(echotc UP 1)%}${_return_status}%{$(echotc DO 1)%}'
-
+# Current Git branch
 function current_branch() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
   echo ${ref#refs/heads/}
 }
 
+# Current Git repository
 function current_repository() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || \
   ref=$(git rev-parse --short HEAD 2> /dev/null) || return
   echo $(git remote -v | cut -d':' -f 2)
 }
+
+# Current Python virtual environment
+function _virtualenv_prompt_info() {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        if [ -f "$VIRTUAL_ENV/__name__" ]; then
+            local name=`cat $VIRTUAL_ENV/__name__`
+        elif [ `basename $VIRTUAL_ENV` = "__" ]; then
+            local name=$(basename $(dirname $VIRTUAL_ENV))
+        else
+            local name=$(basename $VIRTUAL_ENV)
+        fi
+        echo " %{$fg[yellow]%}$name%{$reset_color%}"
+    fi
+}
+
+# Current RVM environment
+function _ruby_version() {
+    if {echo $fpath | grep -q "plugins/rvm"}; then
+        echo " %{$fg[magenta]%}$(rvm_prompt_info)%{$reset_color%}"
+    fi
+}
+
+precmd() {
+PROMPT='$(_user_host)${_current_dir}$(git_prompt_info)$(_ruby_version)$(_virtualenv_prompt_info)
+$ '
+}
+
+RPROMPT='%{$(echotc UP 1)%}${_return_status}%{$(echotc DO 1)%}'
 
 local _return_status="%(?.%{$fg[white]%}[%?]%{$reset_color%}.%{$fg[red]%}[%?]%{$reset_color%})"
 local _current_dir="%{$fg[blue]%}%3~%{$reset_color%}"
@@ -39,24 +62,7 @@ function git_prompt_info() {
     echo " $(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
-function _ruby_version() {
-    if {echo $fpath | grep -q "plugins/rvm"}; then
-        echo " %{$fg[magenta]%}$(rvm_prompt_info)%{$reset_color%}"
-    fi
-}
 
-function _virtualenv_prompt_info() {
-    if [ -n "$VIRTUAL_ENV" ]; then
-        if [ -f "$VIRTUAL_ENV/__name__" ]; then
-            local name=`cat $VIRTUAL_ENV/__name__`
-        elif [ `basename $VIRTUAL_ENV` = "__" ]; then
-            local name=$(basename $(dirname $VIRTUAL_ENV))
-        else
-            local name=$(basename $VIRTUAL_ENV)
-        fi
-        echo " %{$fg[yellow]%}$name%{$reset_color%}"
-    fi
-}
 
 # Change caret colour for root
 if [[ $USER == "root" ]]; then

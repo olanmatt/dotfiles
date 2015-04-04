@@ -109,3 +109,6 @@ alias http="python -m SimpleHTTPServer"
 
 # Replace diff with icdiff
 alias diff="icdiff"
+
+# Better alternative to tail -f
+alias watch="less +F"

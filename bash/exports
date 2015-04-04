@@ -5,8 +5,8 @@ export EDITOR="vim"
 export PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 
 # History
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help" # Make some commands not show up in history
-export HISTSIZE=32768 # Larger bash history (allow 32³ entries; default is 500)
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help" # Ignore some commands
+export HISTSIZE=32768 # Increase bash history
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 
@@ -30,8 +30,8 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 export GOPATH=$HOME/Documents/go
 
 # Add Go root to PATH
-# TODO(olanmatt): GOROOT based on OS.
-export GOROOT=/usr/local/Cellar/go/1.4.2/libexec
+export GOROOT=/usr/local/opt/go/libexec/bin
+export PATH=$PATH:$GOROOT
 
 # Add Heroku Toolbelt to PATH
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -40,7 +40,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # Source virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper.sh
+[[ -s "/usr/local/bin/virtualenvwrapper.sh" ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 # Source RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
