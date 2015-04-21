@@ -1,5 +1,7 @@
 #!/bin/bash
 
+brew cask install alarm-clock
+brew cask install android-file-transfer
 brew cask install android-studio
 brew cask install appcleaner
 brew cask install atom
@@ -15,15 +17,18 @@ brew cask install google-drive
 brew cask install google-plus-auto-backup
 brew cask install handbrake
 brew cask install inkscape
+brew cask install ipvanish-vpn
 brew cask install iterm2
 brew cask install limechat
+brew cask install mac2imgur
 brew cask install no-ip-duc
 brew cask install spectacle
 brew cask install steam
 brew cask install teamspeak-client
 brew cask install the-unarchiver
 brew cask install torbrowser
-brew cask install utorrent
+brew cask install transmission
+brew cask install tunnelblick
 brew cask install vagrant
 brew cask install virtualbox
 brew cask install vlc

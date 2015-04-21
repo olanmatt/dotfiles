@@ -1,5 +1,7 @@
 #!/bin/bash
 
+brew tap neovim/homebrew-neovim
+
 brew install ack
 brew install android-platform-tools
 brew install ant
@@ -15,7 +17,7 @@ brew install htop-osx
 brew install httperf
 brew install icdiff
 brew install mercurial
-brew install namebench
+brew install --HEAD neovim
 brew install ngrep
 brew install nmap
 brew install node

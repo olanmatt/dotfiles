@@ -1,10 +1,11 @@
 DIR=$(HOME)/.dotfiles
 
-osx: symlinks brew python ruby go tmux vim zsh
+osx: dotfiles brew
+	xcode-select --install
 	@echo "Run 'make cask' to install applications"
+	@echo "Run 'make osxclean' to remove default OS X applications"
 
 dotfiles: symlinks python ruby go tmux vim zsh
-	@echo
 
 symlinks:
 	@ln -sf $(DIR)/bash/bash_profile $(HOME)/.bash_profile
@@ -29,10 +30,24 @@ brew:
 	chsh -s /usr/local/bin/zsh $(USER)
 
 cask: brew
-	brew tap caskroom/cask
-	brew install brew-cask
+	brew install caskroom/cask/brew-cask
+	brew tap caskroom/versions
 	brew cask update
 	$(DIR)/osx/Caskfile
+
+osxclean:
+	rm -rf  /Applications/Calendar.app \
+	/Applications/Contacts.app \
+	/Applications/FaceTime.app \
+	/Applications/Game\ Center.app \
+	/Applications/iBooks.app \
+	/Applications/iTunes.app \
+	/Applications/Mail.app \
+	/Applications/Maps.app \
+	/Applications/Messages.app \
+	/Applications/Notes.app \
+	/Applications/Photos.app \
+	/Applications/Reminders.app \
 
 python:
 	command -v easy_install >/dev/null 3>&1 || { curl https://bootstrap.pypa.io/ez_setup.py -o - | sudo python; }
@@ -54,7 +69,7 @@ vim: symlinks
 	vim +PluginInstall +qall
 	ln -s $(DIR)/vim/olanmatt_airline.vim $(DIR)/vim/vim/bundle/vim-airline/autoload/airline/themes/olanmatt.vim
 
-zsh:
+zsh: symlinks
 	git clone git://github.com/robbyrussell/oh-my-zsh.git $(HOME)/.oh-my-zsh
 	ln -sf $(DIR)/zsh/*.zsh-theme $(HOME)/.oh-my-zsh/themes
 
