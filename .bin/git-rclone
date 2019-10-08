@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]; then
+   echo "You must specify a repository to clone and a directory."
+   echo ""
+   echo "usage: git rclone <repo> <dir>"
+   exit 1
+fi
+
+if [ ! -d $(basename "$1") ]; then
+   while true; do
+      read -p "Create local mirror of $(basename "$1")? [y/n] " yn
+      case $yn in
+         [Yy]* ) git clone --mirror "$1"; break;;
+         [Nn]* ) exit;;
+         * ) echo "Please answer yes or no.";;
+      esac
+   done
+fi
+
+git clone --reference $(basename "$1") "$1" "$2"

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# ensure running as root
+if [ "$EUID" -ne 0 ]; then
+   echo "Please run as root"
+   exit 1
+fi
+
+# check if /Volumes exists, else exit
+if [ ! -d "/Volumes" ]; then
+   echo "/Volumes does not exist. Is this macOS?"
+   exit 1
+fi
+
+for vol in /Volumes/*/; do
+   # get block device
+   dev=$(df "${vol}" | tail -n +2 | awk '{ print $1 }')
+
+   # skip mounts not from /dev
+   if [[ ! ${dev} = "/dev/"* ]]; then continue; fi
+
+   # skip mounts on main disk
+   if [[ ${dev} = "/dev/disk1s"* ]]; then continue; fi
+   
+   # check if mount is RO
+   if [[ ! $(diskutil info ${vol} | grep "Read-Only Volume" | awk '{ print $3 }') == "Yes" ]]; then continue; fi
+
+   type=$(diskutil info ${vol} | grep "Type (Bundle)" | awk '{ print $3 }')
+
+   # ask to remount
+   while true; do
+      read -r -p "Remount ${dev} on ${vol} as ${type} in RW mode? " response   
+      if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+         # remount the device as RW
+         diskutil unmount ${dev}
+         mkdir ${vol}
+         mount -w -t ${type} ${dev} ${vol}
+      fi
+      break
+   done
+done

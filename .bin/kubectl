@@ -1,0 +1,11 @@
+#!/bin/bash
+
+KUBECTL=$(which -a kubectl | grep -v "\.bin/kubectl" | head -n1)
+
+if [ "$1" == "use" ]; then
+   ${KUBECTL} config use-context "${@:2}"
+elif [ "$1" == "ls" ]; then
+   ${KUBECTL} config get-contexts
+else
+   ${KUBECTL} $@
+fi

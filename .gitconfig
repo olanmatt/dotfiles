@@ -1,0 +1,21 @@
+[filter "lfs"]
+   required = true
+   clean = git-lfs clean -- %f
+   smudge = git-lfs smudge -- %f
+   process = git-lfs filter-process
+[core]
+   excludesfile = ~/.gitignore_global
+[push]
+   default = simple
+[color]
+   diff = auto
+   status = auto
+   branch = auto
+   interactive = auto
+   ui = true
+   pager = true
+[alias]
+   ic = icdiff
+   st = status
+   stu = status -uno
+   stats = diff --stat
