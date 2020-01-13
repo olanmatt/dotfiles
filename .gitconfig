@@ -19,3 +19,6 @@
    st = status
    stu = status -uno
    stats = diff --stat
+[user]
+	name = Matt Olan
+	email = olan@ca.ibm.com

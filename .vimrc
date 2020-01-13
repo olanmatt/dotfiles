@@ -6,7 +6,6 @@ set nocompatible
 
 " use tpope/vim-sensible
 packadd! vim-sensible
-packadd! YouCompleteMe
 
 ""
 "" Packages
